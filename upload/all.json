@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Twitch зрители",
+        "count": 2222,
+        "max_count": 3511
+    },
+    {
+        "id": 2,
+        "name": "YouTube зрители",
+        "count": 180,
+        "max_count": 4332
+    },
+    {
+        "id": 3,
+        "name": "Trovo только чат-боты",
+        "count": 342,
+        "max_count": 342
+    },
+    {
+        "id": 4,
+        "name": "WASD.TV зрители",
+        "count": 0,
+        "max_count": 342
+    },
+    {
+        "id": 5,
+        "name": "Bigo зрители",
+        "count": 431,
+        "max_count": 789
+    },
+    {
+        "id": 6,
+        "name": "YouTube только чат-боты",
+        "count": 12,
+        "max_count": 123
+    }
+]

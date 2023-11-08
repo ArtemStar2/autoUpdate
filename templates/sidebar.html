@@ -1,0 +1,192 @@
+{% load static %}
+<!--begin::Sidebar-->
+<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+    <!--begin::Logo-->
+    <div class="app-sidebar-logo d-none d-lg-flex flex-stack flex-shrink-0 px-8" id="kt_app_sidebar_logo">
+        <!--begin::Logo image-->
+        <a href="/">
+            <img alt="Logo" src="{% static 'assets/media/logos/default.svg' %}" class="theme-light-show h-25px" />
+            <img alt="Logo" src="{% static 'assets/media/logos/default-dark.svg' %}" class="theme-dark-show h-25px" />
+        </a>
+        <!--end::Logo image-->
+    </div>
+    <!--end::Logo-->
+    <div class="separator d-none d-lg-block"></div>
+    <div class="separator"></div>
+    <!--begin::Sidebar menu-->
+    <div class="app-sidebar-menu hover-scroll-y my-5 my-lg-5 mx-3" id="kt_app_sidebar_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_toolbar, #kt_app_sidebar_footer" data-kt-scroll-offset="0">
+        <!--begin::Menu-->
+        <div class="menu menu-column menu-sub-indention menu-active-bg fw-semibold" id="#kt_sidebar_menu" data-kt-menu="true">
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <!--begin:Menu link-->
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-address-book fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                            <span class="path3"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title">Пользователь</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <!--end:Menu link-->
+                <!--begin:Menu sub-->
+                <div class="menu-sub menu-sub-accordion">
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/profile/">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Профиль</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/profile/channels/">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Ваши каналы</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/profile/transactions/">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Ваши финансы</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="/profile/orders/">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Ваши заказы</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                </div>
+                <!--end:Menu sub-->
+            </div>
+            <!--end:Menu item-->
+            <!--begin:Menu item-->
+            <div class="menu-item pt-5">
+                <!--begin:Menu content-->
+                <div class="menu-content">
+                    <span class="menu-heading fw-bold text-uppercase fs-7">Услуги</span>
+                </div>
+                <!--end:Menu content-->
+            </div>
+            <!--end:Menu item-->
+            {% for social in service.socials %}
+                <!--begin:Menu item-->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <img style="height: 80%; width: 80%;" src="/{{social.image}}"/>
+                        </span>
+                        <span class="menu-title">{{social.name}}</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    {% for item in service.services %}
+                        {% if item.social_networks.id == social.id %}
+                            <div class="menu-sub menu-sub-accordion">
+                                <!--begin:Menu item-->
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link" href="/service/{{item.id}}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">{{item.name}}</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <div class="menu-sub menu-sub-accordion">
+                            <!--begin:Menu item-->
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="/service/{{item.id}}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Нет доступных услуг</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                        </div>
+                    {% endfor %}
+                    <!--end:Menu sub-->
+                </div>
+                <!--end:Menu item-->
+            {% empty %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                        </span>
+                        <span class="menu-title">Нет доступных сервисов</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+        <!--end::Menu-->
+    </div>
+    <!--end::Sidebar menu-->
+    <!--begin::User-->
+    <div class="app-sidebar-user d-flex flex-stack py-5 px-8">
+        <!--begin::User avatar-->
+        <div class="d-flex me-5">
+            <!--begin::Info-->
+            <div class="me-2">
+                <!--begin::Username-->
+                <a href="/profile/" class="app-sidebar-username text-gray-800 text-hover-primary fs-6 fw-semibold lh-0">
+                    {% if system.user.first_name and system.user.last_name %}
+                    {{system.user.first_name}} {{system.user.last_name}}
+                    {% else %}
+                    {{system.user.username}}
+                    {% endif %}
+                </a>
+                <!--end::Username-->
+            </div>
+            <!--end::Info-->
+        </div>
+        <!--end::User avatar-->
+        <!--begin::Action-->
+        <a href="#" id="logout-js" class="btn btn-icon btn-active-color-primary btn-icon-custom-color me-n4" data-bs-toggle="tooltip" title="End session and singout">
+            <i class="ki-duotone ki-entrance-left fs-2 text-gray-400">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+        </a>
+        <!--end::Action-->
+    </div>
+    <!--end::User-->
+</div>
+<!--end::Sidebar-->
